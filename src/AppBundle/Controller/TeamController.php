@@ -17,16 +17,12 @@ class TeamController extends Controller
     }
 
     /**
-     * @Route("/team/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="teamview")
+     * @Route("/team/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="teamView")
      * @Method("GET")
      * @Template()
      */
     public function viewAction($teamName)
     {
-        return [
-                'team' => $this->createFakeTeam($teamName),
-                'playersRoute' => '/player/view/',
-                'coachsRoute' => '/coach/view/',
-               ];
+        return ['team' => $this->createFakeTeam($teamName)];
     }
 }

@@ -27,7 +27,7 @@ class CoachController extends Controller
     }
 
     /**
-     * @Route("/coach/view/{teamName}/{coachName}", requirements={"teamName": "[-A-Za-z\x20\.\']+", "coachName": "[-A-Za-z\x20\.\']+"}, name="coachview")
+     * @Route("/coach/view/{teamName}/{coachName}", requirements={"teamName": "[-A-Za-z\x20\.\']+", "coachName": "[-A-Za-z\x20\.\']+"}, name="coachView")
      * @Method("GET")
      * @Template()
      */
@@ -37,15 +37,12 @@ class CoachController extends Controller
     }
 
     /**
-     * @Route("/coach/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="coachindex")
+     * @Route("/coach/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="coachIndex")
      * @Method("GET")
      * @Template()
      */
     public function indexAction($teamName)
     {
-        return [
-                'coachs' => $this->createFakeCoach(4, $teamName),
-                'coachRoute' => '/coach/view/' . $teamName,
-               ];
+        return ['coachs' => $this->createFakeCoach(4, $teamName)];
     }
 }

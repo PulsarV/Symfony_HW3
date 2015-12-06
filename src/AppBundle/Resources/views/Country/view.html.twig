@@ -8,7 +8,5 @@
 {% endblock %}
 {% block content %}
     {{ countries[0].info }}
-    <p>
-        <p><a class="btn btn-default"  href="{{ teamRoute }}{{ countries[0].team }}" role="button">{{ countries[0].team }} national football team</a></p>
-    </p>
+    <p><a class="btn btn-default"  href="{{ path('teamView', {'teamName': countries[0].team}) }}" role="button">{{ countries[0].team }} national football team</a></p>
 {% endblock %}

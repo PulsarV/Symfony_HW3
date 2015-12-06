@@ -27,7 +27,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/player/view/{teamName}/{playerName}", requirements={"teamName": "[-A-Za-z\x20\.\']+", "playerName": "[-A-Za-z\x20\.\']+"}, name="playerview")
+     * @Route("/player/view/{teamName}/{playerName}", requirements={"teamName": "[-A-Za-z\x20\.\']+", "playerName": "[-A-Za-z\x20\.\']+"}, name="playerView")
      * @Method("GET")
      * @Template()
      */
@@ -37,16 +37,13 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/player/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="playerindex")
+     * @Route("/player/view/{teamName}", requirements={"teamName": "[-A-Za-z\x20\.\']+"}, name="playerIndex")
      * @Method("GET")
      * @Template()
      */
     public function indexAction($teamName)
     {
-        return [
-                'players' => $this->createFakePlayer(32, $teamName),
-                'playerRoute' => '/player/view/' . $teamName,
-               ];
+        return ['players' => $this->createFakePlayer(32, $teamName)];
     }
 
 }

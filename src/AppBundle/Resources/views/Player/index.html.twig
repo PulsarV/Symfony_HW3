@@ -8,6 +8,6 @@
 {% endblock %}
 {% block content %}
     {% for player in players %}
-        <a class="btn btn-default col-lg-3" href="{{ playerRoute }}/{{ player.name }}" role="button">{{ player.name }}</a>
+        <a class="btn btn-default col-lg-3" href="{{ path('playerView', {'teamName': player.team, 'playerName':player.name}) }}" role="button">{{ player.name }}</a>
     {% endfor %}
 {% endblock %}

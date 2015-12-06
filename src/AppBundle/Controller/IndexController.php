@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IndexController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homePage")
      * @Method("GET")
      * @Template()
      */

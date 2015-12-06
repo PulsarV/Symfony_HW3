@@ -26,28 +26,22 @@ class CountryController extends Controller
     }
 
     /**
-     * @Route("/country/view/{countryName}", requirements={"countryName": "[-A-Za-z\x20\.\']+"}, name="countryview")
+     * @Route("/country/view/{countryName}", requirements={"countryName": "[-A-Za-z\x20\.\']+"}, name="countryView")
      * @Method("GET")
      * @Template()
      */
     public function viewAction($countryName)
     {
-        return [
-                'countries' => $this->createFakeCountry(1, $countryName),
-                'teamRoute' => '/team/view/',
-               ];
+        return ['countries' => $this->createFakeCountry(1, $countryName)];
     }
 
     /**
-     * @Route("/country/view/", name="countryindex")
+     * @Route("/country/view/", name="countryIndex")
      * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
-        return [
-                'countries' => $this->createFakeCountry(24),
-                'countryRoute' => '/country/view/',
-               ];
+        return ['countries' => $this->createFakeCountry(24)];
     }
 }
