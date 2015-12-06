@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Country info: {{ countries[0].name }}
+{% endblock %}
+{% block header %}
+    Country info {{ countries[0].name }}
+{% endblock %}
+{% block content %}
+    {{ countries[0].info }}
+    <p>
+        <p><a class="btn btn-default"  href="{{ teamRoute }}{{ countries[0].team }}" role="button">{{ countries[0].team }} national football team</a></p>
+    </p>
+{% endblock %}

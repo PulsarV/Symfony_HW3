@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    {{ ' - Qualification' }}
+{% endblock %}
+{% block header %}Qualification{% endblock %}
+{% block content %}
+    <div class="content  col-lg-offset-4 col-lg-4">
+        <table class="table table-bordered text-center">
+            {% for country in countries %}
+                <tr>
+                    <td class="column col-md-1"><a href="country/view/{{ country }}"><img src="{{ asset("images/#{country}.png") }}"></a></td>
+                    <td><a href="team/view/{{ country }}">{{ country }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
