@@ -128,28 +128,4 @@ class Country
     {
         return $this->description;
     }
-
-    /**
-     * Set country
-     *
-     * @param Team $country
-     *
-     * @return Country
-     */
-    public function setCountry(Team $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return Team
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
 }

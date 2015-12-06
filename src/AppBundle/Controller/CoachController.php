@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Model\Coach;
+use Doctrine\Common\Collections\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -10,22 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CoachController extends Controller
 {
-    private function createFakeCoach($count, $team = '', $coach = '')
-    {
-        $faker = \Faker\Factory::create();
-        $coachs = [];
-        for ($i = 0; $i < $count; $i++) {
-            if ($team && $coach) {
-                $coachs[] = new Coach($coach, $team , $faker->text(5000));
-            } elseif ($team) {
-                $coachs[] = new Coach($faker->name, $team , $faker->text(5000));
-            } else {
-                $coachs[] = new Coach($faker->name, $faker->country , $faker->text(5000));
-            }
-        }
-        return $coachs;
-    }
-
     /**
      * @Route("/coach/view/{teamName}/{coachName}", requirements={"teamName": "[-A-Za-z\x20\.\']+", "coachName": "[-A-Za-z\x20\.\']+"}, name="coachView")
      * @Method("GET")
@@ -33,7 +17,11 @@ class CoachController extends Controller
      */
     public function viewAction($teamName, $coachName)
     {
-        return ['coachs' => $this->createFakeCoach(1, $teamName, $coachName)];
+        $em = $this->getDoctrine()->getManager();
+        $coachs = $em->getRepository('AppBundle:Team')->findOneBy(['name' => $teamName])->getCoachs();
+        $criteria = Criteria::create()->where(Criteria::expr()->eq("name", $coachName));
+        $coach = $coachs->matching($criteria)[0];
+        return ['coach' => $coach];
     }
 
     /**
@@ -43,6 +31,8 @@ class CoachController extends Controller
      */
     public function indexAction($teamName)
     {
-        return ['coachs' => $this->createFakeCoach(4, $teamName)];
+        $em = $this->getDoctrine()->getManager();
+        $coachs = $em->getRepository('AppBundle:Team')->findOneBy(['name' => $teamName])->getCoachs()->getValues();
+        return ['coachs' => $coachs];
     }
 }
