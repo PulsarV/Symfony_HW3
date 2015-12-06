@@ -9,9 +9,6 @@ class PlayerControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/player/view/Ukraine');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Ukraine national football team players', $crawler->filter('h1')->text());
 
         $client->request('GET', '/player/view/');
         $this->assertEquals(404, $client->getResponse()->getStatusCode());

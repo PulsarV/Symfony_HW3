@@ -9,10 +9,7 @@ class TeamControllerTest extends WebTestCase
     public function testView()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/team/view/Ukraine');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Ukraine national football team', $crawler->filter('h1')->text());
-
+        
         $client->request('GET', '/team/view/Ukraine1');
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
 
