@@ -24,9 +24,6 @@ class CountryControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('Country info Ukraine', $crawler->filter('h1')->text());
 
-        $client->request('GET', "/country/view/Ukraine-Ukraine Ukraine.Ukraine'");
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-
         $client->request('GET', '/country/view/Ukraine1');
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
 
