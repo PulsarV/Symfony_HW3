@@ -18,6 +18,11 @@ class IndexController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $countries = $em->getRepository('AppBundle:Country')->findAll();
+
+        if (!$countries) {
+            throw $this->createNotFoundException('No countries found');
+        }
+
         return ['countries' => $countries];
     }
 }
